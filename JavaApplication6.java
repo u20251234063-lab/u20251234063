@@ -1,0 +1,70 @@
+
+package javaapplication6;
+
+import java.util.Scanner;
+
+public class JavaApplication6 {
+
+    public static void main(String[] args) {
+        int[] numeros = new int[10];
+        int cantidad = 0;
+        Scanner in = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Introducir número");
+            System.out.println("2. Listar números");
+            System.out.println("3. Eliminar por posición");
+            System.out.println("4. Eliminar todos");
+            System.out.println("5. Salir");
+            System.out.print("Opción: ");
+            opcion = in.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    if (cantidad < 10) {
+                        System.out.print("Número: ");
+                        int num = in.nextInt();
+                        int pos = 0;
+                        while (pos < cantidad && numeros[pos] < num) {
+                            pos++;
+                        }
+
+                        // Mover elementos a la derecha para hacer espacio
+                        for (int j = cantidad; j > pos; j--) {
+                            numeros[j] = numeros[j - 1];
+                        }
+
+                        // Insertar el número en su lugar
+                        numeros[pos] = num;
+                        cantidad++;
+                    } else {
+                        System.out.println("Array lleno.");
+                    }
+                case 2:
+                    for (int i = 0; i < cantidad; i++) {
+                        System.out.println(i + ": " + numeros[i]);
+                    }
+                case 3:
+                    if (opcion == 3) {
+                        System.out.print("Posición a eliminar: ");
+                        int pos = in.nextInt();
+                        if (pos >= 0 && pos < cantidad) {
+                            for (int i = pos; i < cantidad - 1; i++) {
+                                numeros[i] = numeros[i + 1];
+                            }
+                            cantidad--;
+                        } else {
+                            System.out.println("Posición inválida.");
+                        }
+                    }
+                case 4:
+                    if (opcion == 4) {
+                        cantidad = 0;
+                        System.out.println("Array vaciado.");
+                    }
+
+            }
+        } while (opcion != 5);
+    }
+}
